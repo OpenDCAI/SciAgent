@@ -34,7 +34,7 @@ pip install python-dotenv
 所有Key及Base_URL保存在 `.env` 中：
 
 ```bash
-# 用于 Gemoni 模型调用
+# 用于 Gemini 模型调用
 OPENROUTER_API_BASE=Base_URL
 OPENROUTER_API_KEY=sk-XXXXXXXXXXXXXXXXXXXX
 ```
