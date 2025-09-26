@@ -1,0 +1,39 @@
+{
+    "title": "Greedy Algorithms",
+    "aliases": ["Greedy Approach", "Greedy Choice"],
+    "categories": ["technique", "optimization", "greedy"],
+    "summary": "A problem-solving paradigm that builds up a solution piece by piece, always choosing the next piece that offers the most obvious and immediate benefit. The core challenge is to prove that this series of locally optimal choices leads to a globally optimal solution.",
+    "prerequisites": ["Sorting"],
+    "complexity": {
+      "time": "Often dominated by sorting, e.g., O(N log N)"
+    },
+    "theory": "A greedy algorithm works if the problem exhibits two properties: 1. **Greedy Choice Property**: A globally optimal solution can be arrived at by making a locally optimal choice. 2. **Optimal Substructure**: An optimal solution to the problem contains optimal solutions to its subproblems. The most common pattern involves sorting the input based on some criteria and then iterating through it, making irrevocable decisions at each step.",
+    "implementations": [
+      {
+        "name": "Activity Selection Problem",
+        "language": "cpp",
+        "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nstruct Activity {\n    int start, finish;\n};\n\nbool compareActivities(const Activity& a, const Activity& b) {\n    return a.finish < b.finish;\n}\n\nvoid selectActivities() {\n    std::vector<Activity> activities = {{1, 4}, {3, 5}, {0, 6}, {5, 7}, {8, 9}};\n    int n = activities.size();\n\n    // Sort activities by their finish time\n    std::sort(activities.begin(), activities.end(), compareActivities);\n\n    int count = 0;\n    int last_finish_time = -1;\n\n    if (n > 0) {\n        count = 1;\n        last_finish_time = activities[0].finish;\n        std::cout << \"Selected activity: \" << activities[0].start << \"-\" << activities[0].finish << std::endl;\n    }\n\n    for (int i = 1; i < n; ++i) {\n        if (activities[i].start >= last_finish_time) {\n            count++;\n            last_finish_time = activities[i].finish;\n            std::cout << \"Selected activity: \" << activities[i].start << \"-\" << activities[i].finish << std::endl;\n        }\n    }\n    std::cout << \"Total activities selected: \" << count << std::endl;\n}"
+      }
+    ],
+    "common_pitfalls": [
+      "Applying a greedy approach to a problem that does not have the greedy-choice property. This often leads to a wrong answer on complex test cases.",
+      "Choosing the wrong sorting criteria. For example, in activity selection, sorting by start time or duration would be incorrect.",
+      "Assuming the first idea that comes to mind is the correct greedy strategy without trying to find a counterexample."
+    ],
+    "example_problems": [
+      {
+        "id": "CSES Sum of Two Values",
+        "link": "https://cses.fi/problemset/task/1640",
+        "description": "Find two numbers in an array that sum to a target value `x`. A greedy-like approach can be used after sorting. Use two pointers, one at the beginning (`left`) and one at the end (`right`). If `sum > x`, decrease the sum by moving `right` pointer left. If `sum < x`, increase the sum by moving `left` pointer right. This works because of the sorted order.",
+        "tags": ["greedy", "sorting", "two_pointers", "searching"],
+        "variation": "Two-pointer technique on sorted array"
+      },
+      {
+        "id": "CSES Ferris Wheel",
+        "link": "https://cses.fi/problemset/task/1090",
+        "description": "Place `n` children on a Ferris wheel with a maximum weight limit per gondola, minimizing the number of gondolas. A greedy approach works: sort the children by weight. Use two pointers, one for the lightest (`i`) and one for the heaviest (`j`). Pair the heaviest child `j` with the lightest child `i` if their combined weight is within the limit. If so, move both pointers. Otherwise, the heaviest child must take a gondola alone.",
+        "tags": ["greedy", "sorting", "two_pointers"],
+        "variation": "Pairing from opposite ends of a sorted array"
+      }
+    ]
+  }

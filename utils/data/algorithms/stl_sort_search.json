@@ -1,0 +1,42 @@
+{
+    "title": "Standard Library Sort and Binary Search",
+    "aliases": ["STL Sort", "std::sort", "std::lower_bound", "std::upper_bound"],
+    "categories": ["technique", "sorting", "searching", "stl"],
+    "summary": "Core C++ STL functions for sorting containers and performing efficient binary searches on sorted sequences. These are among the most frequently used tools in competitive programming.",
+    "prerequisites": ["Arrays/Vectors", "Iterators"],
+    "complexity": {
+      "sort": "O(N log N)",
+      "lower_bound": "O(log N)",
+      "upper_bound": "O(log N)",
+      "space": "O(log N) for introsort"
+    },
+    "theory": "std::sort uses Introsort, a hybrid algorithm, providing O(N log N) average and worst-case performance. Once a container is sorted, std::lower_bound finds the first element not less than a given value, and std::upper_bound finds the first element greater than a value. These are the building blocks for binary searching for elements or conditions within a sorted range.",
+    "implementations": [
+      {
+        "name": "Sorting and Searching a Vector",
+        "language": "cpp",
+        "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nvoid demo() {\n    std::vector<int> v = {10, 20, 30, 30, 40, 50};\n\n    // Sort the vector (if not already sorted)\n    std::sort(v.begin(), v.end());\n\n    // Find the first element that is >= 30\n    auto it_lower = std::lower_bound(v.begin(), v.end(), 30);\n    if (it_lower != v.end()) {\n        // Prints index 2\n        std::cout << \"lower_bound for 30 is at index: \" << std::distance(v.begin(), it_lower) << std::endl;\n    }\n\n    // Find the first element that is > 30\n    auto it_upper = std::upper_bound(v.begin(), v.end(), 30);\n    if (it_upper != v.end()) {\n        // Prints index 4\n        std::cout << \"upper_bound for 30 is at index: \" << std::distance(v.begin(), it_upper) << std::endl;\n    }\n}"
+      }
+    ],
+    "common_pitfalls": [
+      "Forgetting to include the `<algorithm>` header.",
+      "Trying to use `lower_bound` or `upper_bound` on an unsorted container, which yields incorrect results.",
+      "Off-by-one errors when converting iterators to indices using `std::distance`."
+    ],
+    "example_problems": [
+      {
+        "id": "CSES Apartments",
+        "link": "https://cses.fi/problemset/task/1084",
+        "description": "Given desired apartment sizes for applicants and the sizes of available apartments, find the maximum number of applicants that can get an apartment. This problem can be solved greedily by sorting both the applicant desires and apartment sizes and then iterating through them with two pointers.",
+        "tags": ["sorting", "greedy", "two_pointers"],
+        "variation": "Matching two sorted arrays"
+      },
+      {
+        "id": "CSES Concert Tickets",
+        "link": "https://cses.fi/problemset/task/1091",
+        "description": "Customers arrive one by one and want to buy a ticket with a maximum price. You should sell them the cheapest available ticket that is not more expensive than their maximum price. This can be solved efficiently by storing ticket prices in a sorted data structure (like std::multiset) and using `upper_bound` to find the cheapest ticket that is just over their max price, then taking the one before it.",
+        "tags": ["data_structures", "binary_search", "multiset", "upper_bound"],
+        "variation": "Searching for the best fit in a collection"
+      }
+    ]
+  }
