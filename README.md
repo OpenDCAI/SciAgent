@@ -48,7 +48,7 @@ SciAgent/
 ├── .env                            # API key
 ├── run.py                          # 主入口
 ├── run_scripts/
-│   └── batchrun_Olympics.py        # 批处理 debug & evaluation for IPhO
+│   └── batchrun_Olympics.py        # 批处理 debug & evaluation
 ├── utils/
 │   ├── imgTools.py                 # 图像分析工具
 │   ├── breakdownTools.py           # 问题分解工具
