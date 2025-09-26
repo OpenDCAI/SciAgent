@@ -96,7 +96,7 @@ ARGS_LIST = [
         "input_markdown_file":
         "examples/Problems/IChO25/problem1/theory1.md",
         "output_file_position":
-        f"output/IChO2025_test/Q1/Q1_0926_{idx}.md",
+        f"output/IChO2025_test/Q1/Q1_{idx}.md",
     } for idx in range(NUM_PER_QUESTION)],
 ]
 ```
