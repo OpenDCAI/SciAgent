@@ -1,0 +1,13 @@
+tenacity
+smolagents
+smolagents[litellm]
+loguru
+python-dotenv
+langchain
+langchain-core
+langchain-community
+langchain-openai
+chromadb
+langchain-chroma
+sentence-transformers
+rdkit

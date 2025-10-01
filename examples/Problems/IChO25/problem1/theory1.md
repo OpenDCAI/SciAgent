@@ -1,6 +1,6 @@
 # 1. Isocaryophyllene, clovene, and humulene
 
-![1](images\1.png)
+![1](images/1.png)
 
 Sesquiterpenes have the formula C₁₅H₂₄. They are secondary metabolites in plants and both deter insects which eat plants and attract animals which eat the insects.
 
@@ -8,7 +8,7 @@ Isocaryophyllene (**i-Cy**) is a sesquiterpene found in oregano, rosemary, peppe
 
 The structural formula of **i-Cy** can be determined by performing various reactions and analysing the products as shown in the figure.
 
-![2](images\2.png)
+![2](images/2.png)
 
 equiv. = translation 'equiv.'
 
@@ -20,7 +20,7 @@ Clovene (**Cv**) can be synthesised from **i-Cy** under acid catalysis. The synt
 
 
 
-![3](images\3.png)
+![3](images/3.png)
 
 H⁺ (cat.)="translation H⁺ (cat.)"
 
@@ -38,7 +38,7 @@ For steps '**1**' and '**2**' several reagents could be considered. For example:
 
 
 
-![4](images\4.png)
+![4](images/4.png)
 
 
 
@@ -50,7 +50,7 @@ The final part of the synthesis is shown.
 
 
 
-![5](images\5.png)
+![5](images/5.png)
 
 
 
@@ -60,7 +60,7 @@ Humulene (**Hu**) is another sesquiterpene. It can be converted to α-caryophyll
 
 
 
-![6](images\6.png)
+![6](images/6.png)
 
 H⁺ (cat.)="translation H⁺ (cat.)"
 
@@ -75,7 +75,7 @@ Five carbon atoms are circled in **Hu**. Through understanding the mechanism we 
 
 
 
-![7](images\7.png)
+![7](images/7.png)
 
 
 
