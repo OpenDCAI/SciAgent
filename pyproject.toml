@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sciagent"
+version = "0.1.0"
+description = "SciAgent: A scientific agent project"
+requires-python = ">=3.8"
+authors = [
+    {name="Xuchen Li", email="s-lxc24@bjzgca.edu.cn"},
+    {name="Ruitao Wu", email="1441570802@qq.com"},
+    {name="Hao Liang", email="hao.liang@stu.pku.edu.cn"},
+    ]
+license = {text = "MIT"}
+readme = "README.md"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+]
+keywords = ["agent", "AI"]
+
+# [project.scripts]
+# sciagent = ".cli:main"
+
+[tool.setuptools]
+packages = ["smolagents"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = "requirements.txt"}
