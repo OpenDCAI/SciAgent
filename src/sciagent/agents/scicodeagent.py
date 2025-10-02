@@ -9,7 +9,7 @@ from rich.live import Live
 from rich.markdown import Markdown
 from rich.text import Text
 
-from sciagent.scimonitoring import SciMonitor
+from sciagent.agents.scimonitoring import SciMonitor
 
 from smolagents import (
     CodeAgent,
