@@ -10,44 +10,19 @@ MAX_THREADS = 1  # Maximum number of concurrent threads
 NUM_PER_QUESTION = 1  # number of runs per problem
 
 ARGS_LIST = [
-    # *[{
-    #     "manager_model":
-    #     "openai/gemini-2.5-pro",
-    #     "review_tool_model":
-    #     "openai/gemini-2.5-pro",
-    #     "image_tool_model":
-    #     "openai/gemini-2.5-pro",
-    #     "breakdown_tool_model":
-    #     "openai/gemini-2.5-pro",
-    #     "summarize_tool_model":
-    #     "openai/gemini-2.5-pro",
-    #     "manager_type":
-    #     "CodeAgent",
-    #     "tools_list": [
-    #         "ask_image_expert",
-    #         "finalize_part_answer",
-    #         "ask_review_expert",
-    #         "breakdown_question_expert",
-    #         "smiles_verify_expert",
-    #     ],
-    #     "input_markdown_file":
-    #     "H:/work/SciAgent/examples/Problems/IPhO25/theory_test/theory1.md",
-    #     "output_file_position":
-    #     f"H:/work/SciAgent/output/IPhO2025_test/Q1/Q1_{idx}.md",
-    # } for idx in range(NUM_PER_QUESTION)],
     *[{
         "manager_model":
-        "openai/GLM-4.1V-Thinking-Flash",
+        "openai/gemini-2.5-pro",
         "review_tool_model":
-        "openai/GLM-4.1V-Thinking-Flash",
+        "openai/gemini-2.5-pro",
         "image_tool_model":
-        "openai/GLM-4.1V-Thinking-Flash",
+        "openai/gemini-2.5-pro",
         "breakdown_tool_model":
-        "openai/GLM-4.1V-Thinking-Flash",
+        "openai/gemini-2.5-pro",
         "summarize_tool_model":
-        "openai/GLM-4.1V-Thinking-Flash",
+        "openai/gemini-2.5-pro",
         "manager_type":
-        "SciCodeAgent",
+        "CodeAgent",
         "tools_list": [
             "ask_image_expert",
             "finalize_part_answer",
@@ -56,9 +31,10 @@ ARGS_LIST = [
             "smiles_verify_expert",
         ],
         "input_markdown_file":
-        "H:/work/SciAgent/examples/Problems/IPhO25/problem_test/theory1.md",
+        "examples/Problems/IPhO25/theory_test/theory1.md",
         "output_file_position":
-        f"H:/work/SciAgent/output/IPhO2025_test/Q1/Q1_{idx}.md",
+        f"output/IPhO2025_test/Q1/Q1_{idx}.md",
+    } for idx in range(NUM_PER_QUESTION)],
     } for idx in range(NUM_PER_QUESTION)],
 ]
 
@@ -67,7 +43,7 @@ def build_command(args_dict):
     """Build the command to run run.py with the given arguments."""
     cmd = [
         sys.executable,
-        "H:/work/SciAgent/run.py",
+        "run.py",
         "--input-markdown-file",
         args_dict["input_markdown_file"],
         "--manager-model",
