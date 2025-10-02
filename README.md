@@ -57,6 +57,7 @@ SciAgent/
 │   ├── breakdownTools.py           # problem decomposition tools
 │   ├── rag_system.py               # RAG base system
 │   ├── data                        # RAG data
+│   ├── ragTools.py                 # RAG tools
 │   ├── reviewTools.py              # solution review tools
 │   ├── smilesTools.py              # SMILES validation tools
 │   ├── summemoryTools.py           # memory summarization tools
