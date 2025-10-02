@@ -1,4 +1,4 @@
-# Science Agent System ⚙️
+# SciAgent ⚙️
 
 ## Environment Setup 🧰
 
