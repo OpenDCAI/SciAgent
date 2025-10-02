@@ -32,11 +32,11 @@ from sciagent import SciCodeAgent
 from smolagents.agents import ActionStep
 
 # deal with markdown contents
-from utils import MarkdownMessage
-from utils import load_markdown_from_filepath, markdown_to_plaintext, markdown_images_compress
+from sciagent.utils import MarkdownMessage
+from sciagent.utils import load_markdown_from_filepath, markdown_to_plaintext, markdown_images_compress
 
 # Import tools usable for agents
-from tools import AskImageTool, ReviewRequestTool, SummarizeMemoryTool, BreakdownTool, SmilesTool
+from sciagent.tools import AskImageTool, ReviewRequestTool, SummarizeMemoryTool, BreakdownTool, SmilesTool
 
 TOOLNAME2TOOL = {
     'ask_image_expert': AskImageTool,

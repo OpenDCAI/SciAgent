@@ -6,7 +6,7 @@ from smolagents.default_tools import Tool
 # Import smolagents components for LLM model and message handling
 from smolagents import (LiteLLMModel)
 from smolagents.models import ChatMessage, MessageRole
-from utils.markdown_utils import MarkdownMessage, compressed_image_content
+from sciagent.utils.markdown_utils import MarkdownMessage, compressed_image_content
 
 
 class ReviewRequestTool(Tool):

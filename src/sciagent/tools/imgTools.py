@@ -6,7 +6,7 @@ from base64 import b64decode
 # Import smolagents components for LLM model and message handling
 from smolagents import LiteLLMModel
 from smolagents.models import ChatMessage, MessageRole
-from utils.markdown_utils import MarkdownMessage
+from sciagent.utils.markdown_utils import MarkdownMessage
 
 
 class AskImageTool(Tool):

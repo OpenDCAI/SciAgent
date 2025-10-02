@@ -1,4 +1,8 @@
-__pycache__/
+**/__pycache__
+**/__pycache__/
+**/.ipynb_checkpoints/
+*.egg
+*.egg-info  
 output*/
 *.txt
 *.pth
@@ -9,3 +13,4 @@ tools/__pycache__/
 smolagents/__pycache__/
 debug/
 sciagent/__pycache__/
+*.env

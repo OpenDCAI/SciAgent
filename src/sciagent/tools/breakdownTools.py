@@ -4,7 +4,7 @@ from typing import Any, Dict, List
 from smolagents.default_tools import Tool
 from smolagents import LiteLLMModel
 from smolagents.models import ChatMessage, MessageRole
-from utils.markdown_utils import MarkdownMessage, compressed_image_content
+from sciagent.utils.markdown_utils import MarkdownMessage, compressed_image_content
 
 
 class BreakdownTool(Tool):
