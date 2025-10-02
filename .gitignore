@@ -1,12 +1,11 @@
-**/__pycache__
-**/__pycache__/
-**/.ipynb_checkpoints/
-*.egg
-*.egg-info  
+__pycache__/
 output*/
+*.txt
 *.pth
 *.pt
 output/
 utils/__pycache__/
+tools/__pycache__/
 smolagents/__pycache__/
-.env
+debug/
+sciagent/__pycache__/

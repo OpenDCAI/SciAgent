@@ -90,12 +90,12 @@ class SummarizeMemoryTool_vanilla(Tool):
     def __init__(self, worker_agent=None, summarize_model_id: str = "openai/gemini-2.5-pro"):
         super().__init__()
         self.worker_agent = worker_agent  # Reference to the main agent for memory access
-        api_key = os.environ.get("OPENROUTER_API_KEY")
+        api_key = os.environ.get("API_KEY")
         # Initialize summarization model with higher token limit for comprehensive summaries
         self.summarize_model = LiteLLMModel(
             model_id=summarize_model_id,
             api_key=api_key,
-            api_base=os.environ.get("OPENROUTER_API_BASE"),
+            api_base=os.environ.get("API_BASE"),
             max_completion_tokens=16384,
             num_retries=3,
             timeout=1200,
@@ -173,11 +173,11 @@ class SummarizeMemoryTool(Tool):
     def __init__(self, worker_agent=None, summarize_model_id: str = "openai/gemini-2.5-pro"):
         super().__init__()
         self.worker_agent = worker_agent
-        api_key = os.environ.get("OPENROUTER_API_KEY")
+        api_key = os.environ.get("API_KEY")
         self.summarize_model = LiteLLMModel(
             model_id=summarize_model_id,
             api_key=api_key,
-            api_base=os.environ.get("OPENROUTER_API_BASE"),
+            api_base=os.environ.get("API_BASE"),
             max_completion_tokens=4096,  # Summary doesn't need to be excessively long
             num_retries=3,
             timeout=180,

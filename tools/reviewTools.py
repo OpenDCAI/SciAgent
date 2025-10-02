@@ -6,7 +6,7 @@ from smolagents.default_tools import Tool
 # Import smolagents components for LLM model and message handling
 from smolagents import (LiteLLMModel)
 from smolagents.models import ChatMessage, MessageRole
-from .markdown_utils import MarkdownMessage, compressed_image_content
+from utils.markdown_utils import MarkdownMessage, compressed_image_content
 
 
 class ReviewRequestTool(Tool):
@@ -40,11 +40,11 @@ class ReviewRequestTool(Tool):
     def __init__(self, worker_agent=None, review_tool_model: str = "openai/gpt-4-turbo"):  # Using a strong model for review
         super().__init__()
         self.worker_agent = worker_agent
-        api_key = os.environ.get("OPENROUTER_API_KEY")
+        api_key = os.environ.get("API_KEY")
         self.review_model = LiteLLMModel(
             model_id=review_tool_model,
             api_key=api_key,
-            api_base=os.environ.get("OPENROUTER_API_BASE"),
+            api_base=os.environ.get("API_BASE"),
             max_completion_tokens=16000,
             num_retries=3,
             timeout=600,

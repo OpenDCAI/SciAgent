@@ -1,6 +1,6 @@
-# 通用Agent System ⚙️
+# Science Agent System ⚙️
 
-## 环境配置 🧰
+## Environment Setup 🧰
 
 ### smolagent 📦
 
@@ -17,7 +17,7 @@ pip install python-dotenv
 
 ### RAG system 📦
 
-```bash 
+```bash
 pip install langchain
 pip install langchain-core
 pip install langchain-community
@@ -27,47 +27,51 @@ pip install langchain-chroma
 pip install sentence-transformers
 pip install python-dotenv
 ```
+
 ---
 
-### 设置API Key 🔑
+### Setting API Key 🔑
 
-所有Key及Base_URL保存在 `.env` 中：
+All keys and Base_URL are stored in `.env`:
 
 ```bash
-# 用于 Gemini 模型调用
-OPENROUTER_API_BASE=Base_URL
-OPENROUTER_API_KEY=sk-XXXXXXXXXXXXXXXXXXXX
+API_BASE=Base_URL
+API_KEY=sk-XXXXXXXXXXXXXXXXXXXX
 ```
 
 ---
 
-## 文件结构 🗂️
+## File Structure 🗂️
 
 ```txt
 SciAgent/
 ├── .env                            # API key
-├── run.py                          # 主入口
+├── run.py                          # main entry point
 ├── run_scripts/
-│   └── batchrun_Olympics.py        # 批处理 debug & evaluation
+│   └── batchrun_Olympics.py        # batch debugging & evaluation
+├── sciagent/
+│   ├── scicodeagent.py
+│   └── scimonitoring.py
+├── tools/
+│   ├── imgTools.py                 # image analysis tools
+│   ├── breakdownTools.py           # problem decomposition tools
+│   ├── rag_system.py               # RAG base system
+│   ├── data                        # RAG data
+│   ├── reviewTools.py              # solution review tools
+│   ├── smilesTools.py              # SMILES validation tools
+│   ├── summemoryTools.py           # memory summarization tools
 ├── utils/
-│   ├── imgTools.py                 # 图像分析工具
-│   ├── breakdownTools.py           # 问题分解工具
-│   ├── rag_system.py               # RAG base系统
-│   ├── data                        # RAG数据
-│   ├── reviewTools.py              # solution审查工具
-│   ├── smilesTools.py              # SMILEs验证工具
-│   ├── summemoryTools.py           # 记忆总结工具
-│   └── markdown_utils.py			# markdown处理
+│   └── markdown_utils.py           # markdown processing
 ...
 ```
 
 ---
 
-# 运行 🚀
+# Running 🚀
 
-### 批量执行 🧵
+### Batch Execution 🧵
 
-Edit and run `run_scripts/batchrun_Olympics.py`:
+Edit and run `run_scripts/batchrun_science.py`:
 
 ```python
 MAX_THREADS = 1
@@ -75,17 +79,17 @@ NUM_PER_QUESTION = 1
 ARGS_LIST = [
     *[{
         "manager_model":
-        "openai/gemini-2.5-pro",
+        "model_id",
         "review_tool_model":
-        "openai/gemini-2.5-pro",
+        "model_id",
         "image_tool_model":
-        "openai/gemini-2.5-pro",
+        "model_id",
         "breakdown_tool_model":
-        "openai/gemini-2.5-pro",
+        "model_id",
         "summarize_tool_model":
-        "openai/gemini-2.5-pro",
+        "model_id",
         "manager_type":
-        "CodeAgent",
+        "SciCodeAgent",
         "tools_list": [
             "ask_image_expert",
             "finalize_part_answer",
@@ -100,3 +104,11 @@ ARGS_LIST = [
     } for idx in range(NUM_PER_QUESTION)],
 ]
 ```
+
+---
+
+## Acknowledgments 🙏
+
+[`smolagents`](https://github.com/huggingface/smolagents)
+
+[`Physics-Supernova`](https://github.com/CharlesQ9/Physics-Supernova)

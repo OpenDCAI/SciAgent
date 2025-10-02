@@ -11,7 +11,7 @@ from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 
 # Read the API key from environment variables
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+API_KEY = os.getenv("API_KEY")
 
 class CPAssistant:
     """
@@ -73,12 +73,12 @@ class CPAssistant:
     def setup_llm(self, rag_tool_model):
         """Initializes the LLM using OpenRouter's API with a timeout."""
         print("Setting up LLM...")
-        api_key = os.environ.get("OPENROUTER_API_KEY", "c72d3aed1f6ddbef52a6a211e576b448.dFAqzW17eM3n9WhD")
+        api_key = os.environ.get("API_KEY")
         self.llm = ChatOpenAI(
             model=rag_tool_model, 
             temperature=0.1,
             api_key=api_key,
-            base_url=os.environ.get("OPENROUTER_API_BASE", "https://open.bigmodel.cn/api/paas/v4"),
+            base_url=os.environ.get("API_BASE", "https://openrouter.ai/api/v1"),
             request_timeout=30, # Added timeout to prevent infinite hangs
             default_headers={
                 "HTTP-Referer": "http://localhost:3000",

@@ -4,7 +4,7 @@ from typing import Any, Dict, List
 from smolagents.default_tools import Tool
 from smolagents import LiteLLMModel
 from smolagents.models import ChatMessage, MessageRole
-from .markdown_utils import MarkdownMessage, compressed_image_content
+from utils.markdown_utils import MarkdownMessage, compressed_image_content
 
 
 class BreakdownTool(Tool):
@@ -43,11 +43,11 @@ class BreakdownTool(Tool):
     def __init__(self, worker_agent=None, breakdown_tool_model: str = "openai/gemini-2.5-pro"):
         super().__init__()
         self.worker_agent = worker_agent
-        api_key = os.environ.get("OPENROUTER_API_KEY")
+        api_key = os.environ.get("API_KEY")
         self.break_model = LiteLLMModel(
             model_id=breakdown_tool_model,
             api_key=api_key,
-            api_base=os.environ.get("OPENROUTER_API_BASE", "https://openrouter.ai/api/v1"),
+            api_base=os.environ.get("API_BASE", "https://openrouter.ai/api/v1"),
             max_completion_tokens=16000,
             num_retries=3,
             timeout=600,

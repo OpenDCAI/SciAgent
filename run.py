@@ -5,7 +5,7 @@ try:
     from dotenv import load_dotenv
     load_dotenv(override=True)  # Load from .env file in the current directory
     print("dotenv loaded successfully from .env file")
-    print(f"Currently using api key: {os.environ.get('OPENROUTER_API_KEY')[:20]}...")
+    print(f"Currently using api key: {os.environ.get('API_KEY')[:20]}...")
 except ImportError:
     # dotenv not available, continue without it
     print("dotenv not available, continuing without it")
@@ -15,8 +15,8 @@ except Exception:
     print("Error loading .env file, continuing without it")
     pass
 
-# use openrouter by default; if you want to use other API bases (e.g. openai api base, etc.), simply set OPENROUTER_API_BASE to your base
-os.environ["OPENROUTER_API_BASE"] = os.environ.get("OPENROUTER_API_BASE", "https://openrouter.ai/api/v1")
+# use openrouter by default; if you want to use other API bases (e.g. openai api base, etc.), simply set API_BASE to your base
+os.environ["API_BASE"] = os.environ.get("API_BASE", "https://openrouter.ai/api/v1")
 
 import argparse
 
@@ -25,17 +25,18 @@ from typing import List
 from smolagents.default_tools import Tool
 from smolagents import (
     MultiStepAgent,
-    CodeAgent,
     LiteLLMModel,
     ToolCallingAgent,
 )
+from sciagent import SciCodeAgent
+from smolagents.agents import ActionStep
 
 # deal with markdown contents
 from utils import MarkdownMessage
 from utils import load_markdown_from_filepath, markdown_to_plaintext, markdown_images_compress
 
 # Import tools usable for agents
-from utils import AskImageTool, ReviewRequestTool, SummarizeMemoryTool, BreakdownTool, SmilesTool
+from tools import AskImageTool, ReviewRequestTool, SummarizeMemoryTool, BreakdownTool, SmilesTool
 
 TOOLNAME2TOOL = {
     'ask_image_expert': AskImageTool,
@@ -45,19 +46,62 @@ TOOLNAME2TOOL = {
     'smiles_verify_expert': SmilesTool,
 }
 
+def cleanup_memory_step(memory_step: ActionStep, agent: SciCodeAgent) -> None:
+    for memory_step in agent.memory.steps:
+        if isinstance(memory_step, ActionStep):
+            if not memory_step.model_output:
+                memory_step.observations = None
+                memory_step.observations_images = None
+                memory_step.model_output = None
+                memory_step.tool_calls = None
+                memory_step.error = None
+            elif "breakdown_question_expert" in memory_step.model_output:
+                if not memory_step.error:
+                    memory_step.model_output = None
+                    memory_step.tool_calls = None
+                    memory_step.error = None
+                else:
+                    memory_step.model_output = None
+            elif "smiles_verify_expert" in memory_step.model_output:
+                if not memory_step.error:
+                    memory_step.model_output = None
+                    memory_step.error = None
+                else:
+                    memory_step.model_output = None
+            elif "ask_image_expert" in memory_step.model_output:
+                if not memory_step.error:
+                    memory_step.model_output = None
+                    memory_step.tool_calls = None
+                    memory_step.error = None
+                else:
+                    memory_step.model_output = None
+            elif "ask_review_expert" in memory_step.model_output:
+                if not memory_step.error:
+                    memory_step.model_output = None
+                    memory_step.tool_calls = None
+                    memory_step.error = None
+                else:
+                    memory_step.model_output = None
+            elif "finalize_part_answer" in memory_step.model_output or "final_answer" in memory_step.model_output:
+                if not memory_step.error:
+                    memory_step.model_output = None
+                    memory_step.tool_calls = None
+                    memory_step.error = None
+                else:
+                    memory_step.model_output = None
 
 def _create_Olympics_agent(Tools_list: List[type[Tool]],
                            markdown_content: MarkdownMessage,
-                           model_id: str = "openai/GLM-4.1V-Thinking-Flash",
+                           model_id: str = "",
                            managed_agents_list: List[MultiStepAgent] = None,
                            max_steps: int = 80,
-                           **kwargs) -> ToolCallingAgent | CodeAgent:  # either returns ToolCallingAgent or CodeAgent
+                           **kwargs) -> ToolCallingAgent | SciCodeAgent:  # either returns ToolCallingAgent or SciCodeAgent
 
     # LLM to use for the agent
     model = LiteLLMModel(
         model_id=model_id,
-        api_key=os.environ.get("OPENROUTER_API_KEY"),
-        api_base=os.environ.get("OPENROUTER_API_BASE"),
+        api_key=os.environ.get("API_KEY"),
+        api_base=os.environ.get("API_BASE"),
         max_completion_tokens=32768,
         num_retries=3,
         timeout=1200,
@@ -86,18 +130,19 @@ def _create_Olympics_agent(Tools_list: List[type[Tool]],
                                 verbosity_level=2,
                                 name="olympics_agent",
                                 description="",
+                                step_callbacks=[cleanup_memory_step],
                                 managed_agents=managed_agents_list)
 
-    if kwargs["manager_type"] == "CodeAgent":
+    if kwargs["manager_type"] == "SciCodeAgent":
         manager_agent_kwargs["additional_authorized_imports"] = [
             "os", "sys", "time", "argparse", "pathlib", "matplotlib.pyplot", "numpy", "pandas"
         ]
-        managerAgent = CodeAgent(**manager_agent_kwargs)
+        managerAgent = SciCodeAgent(**manager_agent_kwargs)
     elif kwargs["manager_type"] == "ToolCallingAgent":
         manager_agent_kwargs["max_tool_threads"] = 1
         managerAgent = ToolCallingAgent(**manager_agent_kwargs)
     else:
-        raise ValueError(f"Unknown manager type: {kwargs['manager_type']}. Must be 'ToolCallingAgent' or 'CodeAgent'.")
+        raise ValueError(f"Unknown manager type: {kwargs['manager_type']}. Must be 'ToolCallingAgent' or 'SciCodeAgent'.")
 
     # register the tools with the agent
     for toolName in managerAgent.tools:
@@ -119,14 +164,14 @@ def get_managed_agents_list(managed_agents_list: List[str] = None,
         # LLM model
         model = LiteLLMModel(
             model_id=managed_agents_list_model_id,
-            api_key=os.environ.get("OPENROUTER_API_KEY"),
-            api_base=os.environ.get("OPENROUTER_API_BASE"),
+            api_key=os.environ.get("API_KEY"),
+            api_base=os.environ.get("API_BASE"),
             max_completion_tokens=32768,
             num_retries=3,
             timeout=1200,
         )
         # managed agent
-        managed_agent = CodeAgent(
+        managed_agent = SciCodeAgent(
             tools=[],
             model=model,
             name=agent_name,
@@ -141,12 +186,12 @@ def get_managed_agents_list(managed_agents_list: List[str] = None,
 
 
 # create the agent
-def create_agent(model_id: str = "openai/GLM-4.1V-Thinking-Flash",
+def create_agent(model_id: str = "",
                  input_markdown_file: str = None,
                  tools_list: List[str] = [],
                  managed_agents_list: List[str] = None,
                  managed_agents_list_model_id: str = None,
-                 **kwargs) -> ToolCallingAgent | CodeAgent:
+                 **kwargs) -> ToolCallingAgent | SciCodeAgent:
     markdown_content = load_markdown_from_filepath(input_markdown_file)
 
     # create the manager agent
@@ -240,7 +285,7 @@ This review process is mandatory. Do not proceed with a multi-step problem witho
     BREAKDOWN_TOOL_PROMPT = """
 You are equipped with a powerful tool: `breakdown_question_expert`. You must adhere to the following protocol:
 
-1.  **Mandatory First Step:** For any new complex problem (like math or physics), your very FIRST action MUST be to call `breakdown_question_expert`. You must provide all parameters:
+1.  **Mandatory First Step:** For any new complex problem (like math, physics or chemistry), your can call `breakdown_question_expert`. You must provide all parameters:
     *   Provide the full problem text in the `question` parameter.
     *   Set `current_context` to "This is the first step. I need a plan to start."
     *   **Set `previous_steps` to "No previous steps taken yet."**
@@ -300,7 +345,7 @@ Your goal is to solve the task efficiently, using the code interpreter as a prec
 """
 
     task += MANAGE_AGENT_PROMPT if len(managed_agents_list) > 0 else ""
-    task += SELF_IS_CODE_AGENT_PROMPT if manager_type == "CodeAgent" else ""
+    task += SELF_IS_CODE_AGENT_PROMPT if manager_type == "SciCodeAgent" else ""
 
     # system prompts for agent related to the problem solving
     PROBLEM_SOLVING_PROMPT = (
@@ -313,26 +358,26 @@ Your goal is to solve the task efficiently, using the code interpreter as a prec
 
 
 def parse_args():
-    ap = argparse.ArgumentParser(description="Run the Olympics Agent with specified tools and model.")
+    ap = argparse.ArgumentParser(description="Run the Science Agent with specified tools and model.")
     ap.add_argument(
         "--input-markdown-file",
         type=str,
-        default=r"H:\work\agent_system\SciAgent\examples\Problems\IMO25\Q1.md",
-        help="Path to the markdown file containing the Olympics problem.",
+        default="",
+        help="Path to the markdown file containing the science problem.",
     )
     ap.add_argument(
         "--manager-model",
         type=str,
-        default="openai/GLM-4.1V-Thinking-Flash",
+        default="",
         help="Model ID to use for the agent.",
     )
 
-    # Choose between ToolCallingAgent and CodeAgent for the manager agent
+    # Choose between ToolCallingAgent and SciCodeAgent for the manager agent
     ap.add_argument(
         "--manager-type",
         type=str,
-        default="CodeAgent",
-        choices=["ToolCallingAgent", "CodeAgent"],
+        default="SciCodeAgent",
+        choices=["SciCodeAgent"],
         help="Type of agent to create (default: ToolCallingAgent).",
     )
 
@@ -341,38 +386,42 @@ def parse_args():
         "--tools-list",
         type=str,
         nargs='*',
-        default=["finalize_part_answer", "ask_review_expert", "breakdown_question_expert"],
+        default=["ask_image_expert",
+            "finalize_part_answer",
+            "ask_review_expert",
+            "breakdown_question_expert",
+            "smiles_verify_expert"],
         help="List of tool names to use in the agent.",
     )
     # LLM model ids for the tools
     ap.add_argument(
         "--image-tool-model",
         type=str,
-        default="openai/GLM-4.1V-Thinking-Flash",
+        default="",
         help="Model ID to use for the image model.",
     )
     ap.add_argument(
         "--breakdown-tool-model",
         type=str,
-        default="openai/GLM-4.1V-Thinking-Flash",
+        default="",
         help="Model ID to use for the image model.",
     )
     ap.add_argument(
         "--review-tool-model",
         type=str,
-        default="openai/GLM-4.1V-Thinking-Flash",
+        default="",
         help="Model ID to use for the review model.",
     )
     ap.add_argument(
         "--smiles-tool-model",
         type=str,
-        default="openai/GLM-4.1V-Thinking-Flash",
+        default="",
         help="Model ID to use for the review model.",
     )
     ap.add_argument(
         "--summarize-tool-model",
         type=str,
-        default="openai/GLM-4.1V-Thinking-Flash",
+        default="",
         help="Model ID to use for the summarizer model.",
     )
 
@@ -394,7 +443,6 @@ def parse_args():
 
     args = ap.parse_args()
 
-    # for example, python run.py --input-markdown-file ./markdowns/physics_problem.md --manager-model openai/GLM-4.1V-Thinking-Flash --tools-list wolfram_alpha_query ask_image_expert ask_review_expert
     if not args.input_markdown_file:
         raise ValueError("You must provide a markdown file position with --input-markdown-file.")
     if not os.path.exists(args.input_markdown_file):
@@ -427,7 +475,7 @@ def main():
         tools_list=args.tools_list,  # system prompt is related to tools
         managed_agents_list=args.managed_agents_list
         if hasattr(args, 'managed_agents_list') else None,  # system prompt is related to managed agents
-        manager_type=args.manager_type,  # system prompt is related to manager type (ToolCallingAgent or CodeAgent)
+        manager_type=args.manager_type,  # system prompt is related to manager type (SciCodeAgent)
     )
 
     managerAgent.run(task, images=compressed_problem_images)

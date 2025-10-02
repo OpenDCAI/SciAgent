@@ -6,7 +6,7 @@ from base64 import b64decode
 # Import smolagents components for LLM model and message handling
 from smolagents import LiteLLMModel
 from smolagents.models import ChatMessage, MessageRole
-from .markdown_utils import MarkdownMessage
+from utils.markdown_utils import MarkdownMessage
 
 
 class AskImageTool(Tool):
@@ -33,12 +33,12 @@ class AskImageTool(Tool):
     def __init__(self, worker_agent=None, vision_model_id: str = "openai/gemini-2.5-pro", max_short_side_pixels: int = 9999):
         super().__init__()
         self.worker_agent = worker_agent  # Reference to the main agent for accessing markdown content
-        api_key = os.environ.get("OPENROUTER_API_KEY")
+        api_key = os.environ.get("API_KEY")
         # Initialize vision model for image analysis
         self.vision_model = LiteLLMModel(
             model_id=vision_model_id,
             api_key=api_key,
-            api_base=os.environ.get("OPENROUTER_API_BASE", "https://openrouter.ai/api/v1"),
+            api_base=os.environ.get("API_BASE", "https://openrouter.ai/api/v1"),
             max_completion_tokens=8192,
             num_retries=3,
             timeout=1200,
