@@ -48,7 +48,7 @@ SciAgent/
 ├── .env                            # API key
 ├── run.py                          # main entry point
 ├── run_scripts/
-│   └── batchrun_Olympics.py        # batch debugging & evaluation
+│   └── batchrun_science.py        # batch debugging & evaluation
 ├── sciagent/
 │   ├── scicodeagent.py
 │   └── scimonitoring.py
