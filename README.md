@@ -1,34 +1,37 @@
 # SciAgent: A Unified Multi-Agent System for Generalistic Scientific Reasoning
 
-<a href=https://arxiv.org/abs/XXXX.XXXXX><img src="https://img.shields.io/badge/arxiv-XXXX.XXXXX-orange?logo=arxiv&logoColor=white"/></a>
+<a href=https://arxiv.org/abs/XXXX.XXXXX><img src="https://img.shields.io/badge/arxiv-XXXX.XXXXX-orange"/></a>
+<a href=./docs/SciAgent_ZGCA.pdf><img src="https://img.shields.io/badge/PDF-SciAgent-blue"/></a>
 
-<br>
 <div>
-Xuchen Li<sup>1,2</sup>,
-Ruitao Wu<sup>1,3</sup>,
-Xuanbo Liu<sup>1,3</sup>,
-Xukai Wang<sup>1,2</sup>,
-Jinbo Hu<sup>4</sup>,
-Zhixin Bai<sup>1,5</sup>,
-Bohan Zeng<sup>4</sup>,
-Hao Liang<sup>1,4</sup>,
-Leheng Chen<sup>1,4</sup>,
-Mingrui Chen<sup>1,2</sup>,
-Haitian Zhong<sup>1,2</sup>,
-Xuanlin Yang<sup>1,4</sup>,
-Xu-Yao Zhang<sup>2</sup>,
-Liu Liu<sup>3</sup>,
-Jia Li<sup>3</sup>,
-Kaiqi Huang<sup>2</sup>,
-Wentao Zhang<sup>1,4</sup>,
-Bin Dong<sup>1,4</sup>
+Xuchen Li<sup>1,3</sup>,
+Ruitao Wu<sup>1,4</sup>,
+Xuanbo Liu<sup>1,4</sup>,
+Xukai Wang<sup>1,3</sup>,
+Jinbo Hu<sup>5</sup>,
+Zhixin Bai<sup>1,6</sup>,
+Bohan Zeng<sup>5</sup>,
+Hao Liang<sup>1,5</sup>,
+Leheng Chen<sup>1,5</sup>,
+Mingrui Chen<sup>1,3</sup>,
+Haitian Zhong<sup>1,3</sup>,
+Xuanlin Yang<sup>1,5</sup>,
+Xu-Yao Zhang<sup>3</sup>,
+Liu Liu<sup>4</sup>,
+Jia Li<sup>4</sup>,
+Kaiqi Huang<sup>3</sup>,
+Jiahao Xu<sup>2</sup>,
+Haitao Mi<sup>2</sup>,
+Wentao Zhang<sup>1,5</sup>,
+Bin Dong<sup>1,5</sup>
 </div>
 <div>
     <sup>1</sup>Zhongguancun Academy
-    <sup>2</sup>Institute of Automation, Chinese Academy of Sciences
-    <sup>3</sup>Beihang University
-    <sup>4</sup>Peking University
-    <sup>5</sup>Nanjing University
+    <sup>2</sup>Tencent AI Lab
+    <sup>3</sup>Institute of Automation, Chinese Academy of Sciences
+    <sup>4</sup>Beihang University
+    <sup>5</sup>Peking University
+    <sup>6</sup>Nanjing University
 </div>
 
 ---
@@ -87,4 +90,4 @@ This code is heavily inspired by [Somlagents](https://github.com/huggingface/smo
 
 ## License
 
-This dataset is licensed under the [Apache License Version 2.0](./LICENSE). You are free to use, modify, and distribute this dataset under the terms of the Apache License Version 2.0.
+This repository is licensed under the [Apache License Version 2.0](./LICENSE). You are free to use, modify, and distribute this code in compliance with the terms and conditions of the Apache License Version 2.0.
