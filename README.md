@@ -1,8 +1,8 @@
 # SciAgent: A Unified Multi-Agent System for Generalistic Scientific Reasoning
 
-<a href=https://arxiv.org/abs/XXXX.XXXXX><img src="https://img.shields.io/badge/arxiv-XXXX.XXXXX-orange?logo=arxiv&logoColor=white"/></a>
+<a href=https://arxiv.org/abs/XXXX.XXXXX><img src="https://img.shields.io/badge/arxiv-XXXX.XXXXX-orange"/></a>
+<a href=./docs/SciAgent_ZGCA.pdf><img src="https://img.shields.io/badge/PDF-SciAgent-blue"/></a>
 
-<br>
 <div>
 Xuchen Li<sup>1,2</sup>,
 Ruitao Wu<sup>1,3</sup>,
@@ -87,4 +87,4 @@ This code is heavily inspired by [Somlagents](https://github.com/huggingface/smo
 
 ## License
 
-This dataset is licensed under the [Apache License Version 2.0](./LICENSE). You are free to use, modify, and distribute this dataset under the terms of the Apache License Version 2.0.
+This repository is licensed under the [Apache License Version 2.0](./LICENSE). You are free to use, modify, and distribute this code in compliance with the terms and conditions of the Apache License Version 2.0.
