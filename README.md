@@ -77,7 +77,7 @@ Official implementation of [**SciAgent: A Unified Multi-Agent System for General
 ```
 @article{sciagent,
   title={SciAgent: A Unified Multi-Agent System for Generalistic Scientific Reasoning},
-  author={Xuchen Li, Ruitao Wu, Xuanbo Liu, Xukai Wang, Jinbo Hu, Zhixin Bai, Bohan Zeng, Hao Liang, Leheng Chen, Mingrui Chen, Haitian Zhong, Xuanlin Yang, Xu-Yao Zhang, Liu Liu, Jia Li, Kaiqi Huang, Wentao Zhang, Bin Dong},
+  author={Xuchen Li, Ruitao Wu, Xuanbo Liu, Xukai Wang, Jinbo Hu, Zhixin Bai, Bohan Zeng, Hao Liang, Leheng Chen, Mingrui Chen, Haitian Zhong, Xuanlin Yang, Xu-Yao Zhang, Liu Liu, Jia Li, Kaiqi Huang, Jiahao Xu, Haitao Mi, Wentao Zhang, Bin Dong},
   journal={arXiv preprint arXiv:XXXX.XXXXX},
   year={2025}
 }
