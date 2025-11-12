@@ -36,7 +36,7 @@ Bin Dong<sup>1,5</sup>
 
 ---
 
-Official implementation of [**SciAgent: A Unified Multi-Agent System for Generalistic Scientific Reasoning**](https://arxiv.org/abs/XXXX.XXXXX)
+Official implementation of [**SciAgent: A Unified Multi-Agent System for Generalistic Scientific Reasoning**](https://arxiv.org/abs/2511.08151)
 
 | ![./assets/performance.png](./assets/performance.png) |
 |:--:|
