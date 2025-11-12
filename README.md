@@ -1,6 +1,6 @@
 # SciAgent: A Unified Multi-Agent System for Generalistic Scientific Reasoning
 
-<a href=https://arxiv.org/abs/XXXX.XXXXX><img src="https://img.shields.io/badge/arxiv-XXXX.XXXXX-orange"/></a>
+<a href=https://arxiv.org/abs/2511.08151><img src="https://img.shields.io/badge/arxiv-2511.08151-orange"/></a>
 <a href=./docs/SciAgent_ZGCA.pdf><img src="https://img.shields.io/badge/PDF-SciAgent-blue"/></a>
 
 <div>
@@ -75,10 +75,10 @@ Official implementation of [**SciAgent: A Unified Multi-Agent System for General
 ## BibTeX
 
 ```
-@article{sciagent,
+@article{sciagent-zgca,
   title={SciAgent: A Unified Multi-Agent System for Generalistic Scientific Reasoning},
   author={Xuchen Li, Ruitao Wu, Xuanbo Liu, Xukai Wang, Jinbo Hu, Zhixin Bai, Bohan Zeng, Hao Liang, Leheng Chen, Mingrui Chen, Haitian Zhong, Xuanlin Yang, Xu-Yao Zhang, Liu Liu, Jia Li, Kaiqi Huang, Jiahao Xu, Haitao Mi, Wentao Zhang, Bin Dong},
-  journal={arXiv preprint arXiv:XXXX.XXXXX},
+  journal={arXiv preprint arXiv:2511.08151},
   year={2025}
 }
 ```
