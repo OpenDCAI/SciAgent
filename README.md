@@ -62,6 +62,8 @@ Official implementation of [**SciAgent: A Unified Multi-Agent System for General
 
 ## TODO 🚀
 
+All code releases will be made by November 16.
+
 - [] Release the code of SciAgent framework.
 
 - [] Release the code of Math Olympiad Worker System.
