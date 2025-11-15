@@ -1,42 +1,8 @@
 # SciAgent: A Unified Multi-Agent System for Generalistic Scientific Reasoning
 
-<a href=https://arxiv.org/abs/2511.08151><img src="https://img.shields.io/badge/arxiv-2511.08151-orange"/></a>
-<a href=./docs/SciAgent_ZGCA.pdf><img src="https://img.shields.io/badge/PDF-SciAgent-blue"/></a>
-
-<div>
-Xuchen Li<sup>1,3</sup>,
-Ruitao Wu<sup>1,4</sup>,
-Xuanbo Liu<sup>1,4</sup>,
-Xukai Wang<sup>1,3</sup>,
-Jinbo Hu<sup>5</sup>,
-Zhixin Bai<sup>1,6</sup>,
-Bohan Zeng<sup>5</sup>,
-Hao Liang<sup>1,5</sup>,
-Leheng Chen<sup>1,5</sup>,
-Mingrui Chen<sup>1,3</sup>,
-Haitian Zhong<sup>1,3</sup>,
-Xuanlin Yang<sup>1,5</sup>,
-Xu-Yao Zhang<sup>3</sup>,
-Liu Liu<sup>4</sup>,
-Jia Li<sup>4</sup>,
-Kaiqi Huang<sup>3</sup>,
-Jiahao Xu<sup>2</sup>,
-Haitao Mi<sup>2</sup>,
-Wentao Zhang<sup>1,5</sup>,
-Bin Dong<sup>1,5</sup>
-</div>
-<div>
-    <sup>1</sup>Zhongguancun Academy
-    <sup>2</sup>Tencent AI Lab
-    <sup>3</sup>Institute of Automation, Chinese Academy of Sciences
-    <sup>4</sup>Beihang University
-    <sup>5</sup>Peking University
-    <sup>6</sup>Nanjing University
-</div>
-
 ---
 
-Official implementation of [**SciAgent: A Unified Multi-Agent System for Generalistic Scientific Reasoning**](https://arxiv.org/abs/2511.08151)
+Official implementation of **SciAgent: A Unified Multi-Agent System for Generalistic Scientific Reasoning**
 
 | ![./assets/performance.png](./assets/performance.png) |
 |:--:|
@@ -74,20 +40,10 @@ All code releases will be made by November 16.
 
 - [] Release the code of General Exam Worker System.
 
-## BibTeX
-
-```
-@article{sciagent-zgca,
-  title={SciAgent: A Unified Multi-Agent System for Generalistic Scientific Reasoning},
-  author={Xuchen Li, Ruitao Wu, Xuanbo Liu, Xukai Wang, Jinbo Hu, Zhixin Bai, Bohan Zeng, Hao Liang, Leheng Chen, Mingrui Chen, Haitian Zhong, Xuanlin Yang, Xu-Yao Zhang, Liu Liu, Jia Li, Kaiqi Huang, Jiahao Xu, Haitao Mi, Wentao Zhang, Bin Dong},
-  journal={arXiv preprint arXiv:2511.08151},
-  year={2025}
-}
-```
 
 ## Acknowledgement
 
-This code is heavily inspired by [Somlagents](https://github.com/huggingface/smolagents), [IMO25](https://github.com/lyang36/IMO25) and [Physics-Supernova](https://github.com/CharlesQ9/Physics-Supernova). Thank you for your outstanding work!
+This code is heavily inspired by [Somlagents](https://github.com/huggingface/smolagents), [IMO25](https://github.com/lyang36/IMO25), [Physics-Supernova](https://github.com/CharlesQ9/Physics-Supernova) and [SciToolAgent](https://github.com/HICAI-ZJU/SciToolAgent). Thank you for your outstanding work!
 
 
 ## License
